@@ -8,28 +8,75 @@
 <body>
     <h1>Вопросы и Ответы</h1>
 
-    <form method="GET" action="">
-        <input type="text" name="search" value="{{ search_query }}" placeholder="Поиск по вопросам и ответам">
-        <button type="submit">Поиск</button>
-    </form>
-
-    {% if find_faq %}
-        <ul>
-            {% for faq in find_faq %}
+    <div style="display: flex;">
+        <aside>
+            <h2>Категории</h2>
                 <li>
-                    {{ faq.question }}<br>
-                    {{ faq.answer }}
+                    <a href="?category=type:typical-questions&search={{ search_query }}">Типовые вопросы</a>
+                    <ul>
+                        <li>
+                            <a href="?category=type:typical-questions/category:ar&search={{ search_query }}">Раздел АР</a>
+                            <ul>
+                                <li><a href="?category=type:typical-questions/category:ar/subcategory:doc&search={{ search_query }}">Оформление документации</a></li>
+                                <li><a href="?category=type:typical-questions/category:ar/subcategory:mod&search={{ search_query }}">Моделирование</a></li>
+                                <li><a href="?category=type:typical-questions/category:ar/subcategory:sv&search={{ search_query }}">Спецификации/ведомости</a></li>
+                                <li><a href="?category=type:typical-questions/category:ar/subcategory:fam&search={{ search_query }}">Семейства</a></li>
+                                <li><a href="?category=type:typical-questions/category:ar/subcategory:psm&search={{ search_query }}">Плагины, скрипты и макросы</a></li>
+                                <li><a href="?category=type:typical-questions/category:ar/subcategory:orher&search={{ search_query }}">Прочее</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="?category=type:typical-questions/category:kr&search={{ search_query }}">Раздел КР</a>
+                            <ul>
+                                <li><a href="?category=type:typical-questions/category:kr/subcategory:doc&search={{ search_query }}">Оформление документации</a></li>
+                                <li><a href="?category=type:typical-questions/category:kr/subcategory:mod&search={{ search_query }}">Моделирование</a></li>
+                                <li><a href="?category=type:typical-questions/category:kr/subcategory:sv&search={{ search_query }}">Спецификации/ведомости</a></li>
+                                <li><a href="?category=type:typical-questions/category:kr/subcategory:fam&search={{ search_query }}">Семейства</a></li>
+                                <li><a href="?category=type:typical-questions/category:kr/subcategory:orher&search={{ search_query }}">Прочее</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="?category=type:typical-questions/category:mer&search={{ search_query }}">Раздел MEP</a>
+                            <ul>
+                                <li><a href="?category=type:typical-questions/category:mer/subcategory:doc&search={{ search_query }}">Оформление документации</a></li>
+                                <li><a href="?category=type:typical-questions/category:mer/subcategory:mod&search={{ search_query }}">Моделирование</a></li>
+                                <li><a href="?category=type:typical-questions/category:mer/subcategory:sv&search={{ search_query }}">Спецификации/ведомости</a></li>
+                                <li><a href="?category=type:typical-questions/category:mer/subcategory:fam&search={{ search_query }}">Семейства</a></li>
+                                <li><a href="?category=type:typical-questions/category:mer/subcategory:orher&search={{ search_query }}">Прочее</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Нет доступных вопросов и ответов.</p>
-    {% endif %}
+                <li><a href="?category=type:warning-revit&search={{ search_query }}">Предупреждения Revit</a></li>
+                <li><a href="?category=type:errors-revit&search={{ search_query }}">Ошибки Revit</a></li>
+            </ul>
+        </aside>
 
-    <div>
-        {% if find_faq.has_next %}
-        <a href="?page={{ find_faq.next_page_number }}&search={{ search_query }}">Далее</a>
-        {% endif %}
+        <main style="margin-left: 20px;">
+            <form method="GET" action="">
+                <input type="text" name="search" value="{{ search_query }}" placeholder="Поиск по вопросам и ответам">
+                <button type="submit">Поиск</button>
+            </form>
+
+            {% if find_faq %}
+                <ul>
+                    {% for faq in find_faq %}
+                        <li>
+                            {{ faq.question }}<br>
+                            {{ faq.answer }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Нет доступных вопросов и ответов.</p>
+            {% endif %}
+
+            <div>
+                {% if find_faq.has_next %}
+                <a href="?page={{ find_faq.next_page_number }}&search={{ search_query }}&category={{ selected_category }}">Далее</a>
+                {% endif %}
+            </div>
+        </main>
     </div>
 </body>
 </html>
