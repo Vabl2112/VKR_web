@@ -61,10 +61,12 @@
             {% if find_faq %}
                 <ul>
                     {% for faq in find_faq %}
-                        <li>
-                            {{ faq.question }}<br>
-                            {{ faq.answer }}
-                        </li>
+                        <a href="?category={{ faq.id }}&search={{ search_query }}">Оформление документации</a>
+                            <li>
+                                {{ faq.question }}<br>
+                                {{ faq.answer }}
+                            </li>
+                        </a>
                     {% endfor %}
                 </ul>
             {% else %}
