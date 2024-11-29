@@ -52,33 +52,47 @@
             </ul>
         </aside>
 
-        <main style="margin-left: 20px;">
-            <form method="GET" action="">
-                <input type="text" name="search" value="{{ search_query }}" placeholder="Поиск по вопросам и ответам">
-                <button type="submit">Поиск</button>
-            </form>
+    <main style="margin-left: 20px;">
+        <form method="GET" action="">
+            <input type="text" name="search" value="{{ search_query }}" placeholder="Поиск по вопросам и ответам">
+            <button type="submit">Поиск</button>
+        </form>
 
-            {% if find_faq %}
-                <ul>
-                    {% for faq in find_faq %}
-                        <a href="?category={{ faq.id }}&search={{ search_query }}">Оформление документации</a>
-                            <li>
-                                {{ faq.question }}<br>
-                                {{ faq.answer }}
-                            </li>
-                        </a>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>Нет доступных вопросов и ответов.</p>
-            {% endif %}
+        {% if find_faq %}
+            <ul>
+                {% for faq in find_faq %}
+                    <li class="faq-item" onclick="toggleAnswer({{ faq.id }})">
+                        {{ faq.question }}
+                        <div id="answer-{{ faq.id }}" class="faq-answer" style="display: none;">
+                            <p>{{ faq.answer }}</p>
+                            {% if faq.image_answer %}
+                                <img src="{{ faq.image_answer }}" alt="Изображение ответа" style="max-width: 300px;">
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет доступных вопросов и ответов.</p>
+        {% endif %}
 
-            <div>
-                {% if find_faq.has_next %}
+        <div>
+            {% if find_faq.has_next %}
                 <a href="?page={{ find_faq.next_page_number }}&search={{ search_query }}&category={{ selected_category }}">Далее</a>
-                {% endif %}
-            </div>
-        </main>
+            {% endif %}
+        </div>
+    </main>
+
+    <script>
+        function toggleAnswer(id) {
+            const answerElement = document.getElementById(`answer-${id}`);
+            if (answerElement.style.display === "none") {
+                answerElement.style.display = "block"; // Показывает ответ
+            } else {
+                answerElement.style.display = "none"; // Скрывает ответ
+            }
+        }
+    </script>
     </div>
 </body>
 </html>
