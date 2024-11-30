@@ -2,12 +2,13 @@ import requests
 from django.shortcuts import render
 from django.core.paginator import Paginator
 
+
 def index(request):
-    find_faq = []
     search_query = request.GET.get('search', '')  # Получаем поисковый запрос
     selected_category = request.GET.get('category', '')  # Получаем выбранную категорию
     base_url = 'http://127.0.0.1:8228/api/'
     clear_url = 'http://127.0.0.1:8228'
+    find_faq = []
 
     if selected_category:
         api_url = f'{base_url}{selected_category}/'
@@ -21,9 +22,21 @@ def index(request):
         response.raise_for_status()  # Поднимаем исключение для статусов 4xx/5xx
         find_faq = response.json()
 
+        # Преобразуем относительные пути к изображениям в абсолютные
+        for faq in find_faq:
+            if 'question_image' in faq:
+                if not faq['question_image'].startswith('http'):
+                    faq['question_image'] = clear_url + faq['question_image']
+
+            if 'answer_image' in faq:
+                if not faq['answer_image'].startswith('http'):
+                    faq['answer_image'] = clear_url + faq['answer_image']
+
+        # Фильтрация по поисковому запросу
         if search_query:
             find_faq = [faq for faq in find_faq if
-                        search_query.lower() in faq['question'].lower() or search_query.lower() in faq['answer'].lower()]
+                        search_query.lower() in faq['question'].lower() or
+                        search_query.lower() in faq['answer'].lower()]
 
         page_number = request.GET.get('page', 1)
         paginator = Paginator(find_faq, 20)

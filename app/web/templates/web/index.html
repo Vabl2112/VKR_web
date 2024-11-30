@@ -1,16 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <h1>Вопросы и Ответы</h1>
-
-    <div style="display: flex;">
+    <div>
         <aside>
-            
+            <h1><a href="/">FAQ</a></h1>
                 <li>
                     <a href="?category=type:typical-questions&search={{ search_query }}">Типовые вопросы</a>
                     <ul>
@@ -52,7 +52,7 @@
             </ul>
         </aside>
 
-    <main style="margin-left: 20px;">
+    <main>
         <form method="GET" action="">
             <input type="text" name="search" value="{{ search_query }}" placeholder="Поиск по вопросам и ответам">
             <button type="submit">Поиск</button>
@@ -64,11 +64,11 @@
                         {{ faq.question }}
                         <div id="answer-{{ faq.id }}" class="faq-answer" style="display: none;">
                            {% if faq.question_image %}
-                                <img src="{{ clear_url }}{{ faq.question_image }}" alt="Изображение вопроса" style="max-width: 300px;">
+                                <img src="{{ faq.question_image }}" alt="Изображение вопроса" style="max-width: 300px;">
                             {% endif %}
                             <p>{{ faq.answer }}</p>
                             {% if faq.answer_image %}
-                                <img src="{{ clear_url }}{{ faq.answer_image }}" alt="Изображение ответа" style="max-width: 300px;">
+                                <img src="{{ faq.answer_image }}" alt="Изображение ответа" style="max-width: 300px;">
                             {% endif %}
                         </div>
                     </li>
