@@ -10,7 +10,7 @@
 
     <div style="display: flex;">
         <aside>
-            <h2>Категории</h2>
+            
                 <li>
                     <a href="?category=type:typical-questions&search={{ search_query }}">Типовые вопросы</a>
                     <ul>
@@ -57,16 +57,18 @@
             <input type="text" name="search" value="{{ search_query }}" placeholder="Поиск по вопросам и ответам">
             <button type="submit">Поиск</button>
         </form>
-
         {% if find_faq %}
             <ul>
                 {% for faq in find_faq %}
                     <li class="faq-item" onclick="toggleAnswer({{ faq.id }})">
                         {{ faq.question }}
                         <div id="answer-{{ faq.id }}" class="faq-answer" style="display: none;">
+                           {% if faq.question_image %}
+                                <img src="{{ faq.question_image }}" alt="Изображение вопроса" style="max-width: 300px;">
+                            {% endif %}
                             <p>{{ faq.answer }}</p>
-                            {% if faq.image_answer %}
-                                <img src="{{ faq.image_answer }}" alt="Изображение ответа" style="max-width: 300px;">
+                            {% if faq.answer_image %}
+                                <img src="{{ clear_urld }}{{ faq.answer_image }}" alt="Изображение ответа" style="max-width: 300px;">
                             {% endif %}
                         </div>
                     </li>

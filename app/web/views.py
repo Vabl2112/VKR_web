@@ -7,6 +7,7 @@ def index(request):
     search_query = request.GET.get('search', '')  # Получаем поисковый запрос
     selected_category = request.GET.get('category', '')  # Получаем выбранную категорию
     base_url = 'http://127.0.0.1:8228/api/'
+    clear_url = 'http://127.0.0.1:8228'
 
     if selected_category:
         api_url = f'{base_url}{selected_category}/'
@@ -32,10 +33,12 @@ def index(request):
         print("Ошибка при запросе к API:", e)
 
     context = {
+        'clear_url': clear_url,
         'find_faq': current_page,
         'search_query': search_query,
         'selected_category': selected_category,
         'paginator': paginator,
     }
-
+    print(context)
     return render(request, 'web/index.html', context)
+
