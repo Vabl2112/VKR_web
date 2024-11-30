@@ -64,11 +64,11 @@
                         {{ faq.question }}
                         <div id="answer-{{ faq.id }}" class="faq-answer" style="display: none;">
                            {% if faq.question_image %}
-                                <img src="{{ faq.question_image }}" alt="Изображение вопроса" style="max-width: 300px;">
+                                <img src="{{ faq.question_image }}" alt="Изображение вопроса">
                             {% endif %}
                             <p>{{ faq.answer }}</p>
                             {% if faq.answer_image %}
-                                <img src="{{ faq.answer_image }}" alt="Изображение ответа" style="max-width: 300px;">
+                                <img src="{{ faq.answer_image }}" alt="Изображение ответа">
                             {% endif %}
                         </div>
                     </li>

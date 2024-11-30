@@ -57,25 +57,25 @@ main {
 form {
     display: flex;
     justify-content: center; /* Центрируем строку поиска */
-    margin: 30px 0;
+    margin: 50px 0;
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 1em;
-    width: 300px; /* Ширина строки поиска */
+    width: 600px; /* Ширина строки поиска */
 }
 
 button {
     padding: 10px;
     font-size: 1em;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 /* Стили для вопросов FAQ */
 .faq-item {
     list-style: none; /* Убираем маркеры списка */
-    margin: 10px 40px;
+    margin: 1% 10%;
     cursor: pointer; /* Курсор указателя */
     border-bottom: 1px solid black;
     padding: 5px;
@@ -84,12 +84,13 @@ button {
 
 /* Заголовок вопросов FAQ */
 .faq-answer {
-    margin-top: 10px; /* Отступ сверху для ответов */
+    margin: 5px; /* Отступ сверху для ответов */
 }
 
 /* Изображения */
 img {
-    max-width: 100%; /* Ограничиваем максимальную ширину изображений */
+    margin: 0 5% ;
+    max-width: 85%; /* Ограничиваем максимальную ширину изображений */
     height: auto; /* Сохраняем пропорции изображений */
 }
 
