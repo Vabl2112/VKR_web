@@ -4,7 +4,6 @@ body {
     padding: 0;
 }
 
-/* Заголовок FAQ */
 h1 {
     font-size: 2em;
     text-align: left;
@@ -12,58 +11,53 @@ h1 {
     padding-left: 20px;
 }
 
-/* Стили для асайд меню */
 aside {
-    width: 350px; /* Ширина блока с категориями */
+    width: 350px;
     padding: 20px;
     background-color: #f8f8f8;
-    border-right: 1px solid #ccc; /* Разделитель */
-    height: 100vh; /* Полная высота окна */
-    position: fixed; /* Фиксируем меню */
+    border-right: 1px solid #ccc;
+    height: 100vh;
+    position: fixed;
     font-size: 20px;
 }
 
-/* Стили для ссылок в категории */
 aside a {
-    text-decoration: none; /* Убираем подчеркивание */
-    color: #333; /* Цвет текста */
-    display: block; /* Делаем ссылки блочными элементами */
-    padding: 5px 0; /* Отступы сверху и снизу */
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 0;
 }
 
 aside li {
-    list-style: none; /* Убираем маркеры списка */
-    padding-left: 0; /* Убираем отступ слева */
+    list-style: none;
+    padding-left: 0;
 }
 
 aside ul {
-    list-style: none; /* Убираем маркеры списка */
-    padding-left: 15px; /* Убираем отступ слева */
+    list-style: none;
+    padding-left: 15px;
 }
 
-/* Стиль подкатегорий */
 aside ul ul {
-    padding-left: 30px; /* Отступ для подкатегорий */
+    padding-left: 30px;
 }
 
-/* Стили для контейнера главного контента */
 main {
-    margin-left: 350px; /* Учтем ширину aside + отступ */
+    margin-left: 350px;
     padding: 20px;
 
 }
 
-/* Стиль для строки поиска */
 form {
     display: flex;
-    justify-content: center; /* Центрируем строку поиска */
+    justify-content: center;
     margin: 50px 0;
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 1em;
-    width: 600px; /* Ширина строки поиска */
+    width: 600px;
 }
 
 button {
@@ -72,30 +66,26 @@ button {
     margin-left: 15px;
 }
 
-/* Стили для вопросов FAQ */
 .faq-item {
-    list-style: none; /* Убираем маркеры списка */
+    list-style: none;
     margin: 1% 10%;
-    cursor: pointer; /* Курсор указателя */
+    cursor: pointer;
     border-bottom: 1px solid black;
     padding: 5px;
     font-size: 20px;
 }
 
-/* Заголовок вопросов FAQ */
 .faq-answer {
-    margin: 5px; /* Отступ сверху для ответов */
+    margin: 5px;
 }
 
-/* Изображения */
 img {
     margin: 0 5% ;
-    max-width: 85%; /* Ограничиваем максимальную ширину изображений */
-    height: auto; /* Сохраняем пропорции изображений */
+    max-width: 85%;
+    height: auto;
 }
 
-/* Добавим эффекты наведения для ссылок */
 aside a:hover {
-    color: #007BFF; /* Цвет ссылки при наведении */
-    font-weight: bold; /* Делает текст жирным */
+    color: #007BFF;
+    font-weight: bold;
 }

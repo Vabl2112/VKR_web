@@ -4,10 +4,10 @@ from django.core.paginator import Paginator
 
 
 def index(request):
-    search_query = request.GET.get('search', '')  # Получаем поисковый запрос
-    selected_category = request.GET.get('category', '')  # Получаем выбранную категорию
-    base_url = 'http://127.0.0.1:8228/api/'
+    search_query = request.GET.get('search', '')
+    selected_category = request.GET.get('category', '')
     clear_url = 'http://127.0.0.1:8228'
+    base_url = clear_url + '/api/'
     find_faq = []
 
     if selected_category:
@@ -19,10 +19,9 @@ def index(request):
 
     try:
         response = requests.get(api_url)
-        response.raise_for_status()  # Поднимаем исключение для статусов 4xx/5xx
+        response.raise_for_status()
         find_faq = response.json()
 
-        # Преобразуем относительные пути к изображениям в абсолютные
         for faq in find_faq:
             if 'question_image' in faq:
                 if not faq['question_image'].startswith('http'):
@@ -32,7 +31,6 @@ def index(request):
                 if not faq['answer_image'].startswith('http'):
                     faq['answer_image'] = clear_url + faq['answer_image']
 
-        # Фильтрация по поисковому запросу
         if search_query:
             find_faq = [faq for faq in find_faq if
                         search_query.lower() in faq['question'].lower() or
