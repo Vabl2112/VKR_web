@@ -85,6 +85,11 @@ img {
     height: auto;
 }
 
+p {
+    display: flex;
+    padding-left: 40px;
+}
+
 aside a:hover {
     color: #007BFF;
     font-weight: bold;
